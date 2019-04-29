@@ -1,0 +1,10 @@
+Concept:
+
+-> Here, Representation of floating point number is(Which is the genotype for this question):
+    1) first position is reserved for sign of number
+    2) fouth position is reserved for decimal point in number
+    3) other places are occupied by 0s and 1s (similar to actual representation of fractional binary number)
+-> For crossover and mutaion I used simple string manipulation.
+-> For converting genotype to phenotype, find j such that, it is equal to int 
+   form of genotype. Do, F = j-(2^63)*2.04/(2^63). We can reverse above processor 
+   get genotype from phenotype
