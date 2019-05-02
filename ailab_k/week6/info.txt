@@ -1,0 +1,11 @@
+Group members:
+
+Kaushal Kishore (111601008)
+Pankaj Kumar (111601014)
+Shiv Kumar Suthar (111601023)
+
+Important : "Good variable names reduces the amount of commenting in a code."  -- Kaushal Kishore
+
+A-Star Algorithm Implementation on a grid.
+
+Program is commented properly and is self-explanatory.

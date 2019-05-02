@@ -1,0 +1,10 @@
+Group members:
+
+Kaushal Kishore (111601008)
+Pankaj Kumar (111601014)
+Shiv Kumar Suthar (111601023)
+
+Important : "Good variable names reduces the amount of commenting in a code."  -- Kaushal Kishore
+
+This program uses the breadth first search algortihm to reach the goal state.
+Rest of the code is commented and is self-explanatory. Hence ommiting the explanations here.
