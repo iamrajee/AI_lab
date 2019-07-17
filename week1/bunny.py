@@ -25,5 +25,3 @@ class Environment:
 
     def step(self):
         pass
-
-
