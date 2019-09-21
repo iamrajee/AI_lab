@@ -1,10 +1,12 @@
-# 1. It renders instance for 500 timesteps, perform random actions
+# 1. It renders instance for 200 timesteps, perform random actions
 import gym
 env = gym.make('Acrobot-v1')
 env.reset()
-for _ in range(500):
+for _ in range(200):
     env.render()
     env.step(env.action_space.sample())
+env.close()
+
 # 2. To check all env available, uninstalled ones are also shown
-from gym import envs 
+from gym import envs
 print(envs.registry.all())
