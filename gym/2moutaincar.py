@@ -38,22 +38,19 @@ def Viteration(env, lr, gamma, ep, mnep, e):
                 env.render()
             #====== explore vs exploit =====#
             if np.random.random() < 1 - ep:#epsilon greedy exr vs expt
-                a = np.argmax(Q[sd[0], sd[1]]) 
+                a = np.argmax(Q[sd[0], sd[1]])
             else:
                 a = np.random.randint(0, env.action_space.n)
-            s_, R, done, info = env.step(a) 
+            s_, R, done, info = env.step(a)
             s_d = discret(s_)# Discretize
-            
             #====== update q =====#
             if done and s_[0] >= 0.5:#Allow for terminal states
                 Q[sd[0], sd[1], a] = R
             else:# Adjust Q value for current s
                 Q[sd[0], sd[1],a] =(1-lr)*Q[sd[0],sd[1],a]  +   lr*(R + gamma*np.max(Q[s_d[0], s_d[1]]))
-            
             #====== variable update =====#
             rsum += R# Update variables
             sd = s_d
-        
         #====== epsilion decay =====#
         if ep > mnep:# Decay ep
             ep -= epd
