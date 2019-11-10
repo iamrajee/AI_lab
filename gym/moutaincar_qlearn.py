@@ -1,6 +1,7 @@
 import numpy as np
 import gym
 import matplotlib.pyplot as plt
+from time import *
 
 #========================== env ===========================#
 env = gym.make('MountainCar-v0')
@@ -34,8 +35,9 @@ def Viteration(env, lr, gamma, ep, mnep, e):
         sd = discret(s)# Discretize
         #========== while not done ============#
         while done != True:
-            if i >= (e - 20):# Render environment for last five e
+            if i >= (e - 5):# Render environment for last five e
                 env.render()
+                sleep(0.005)
             #====== explore vs exploit =====#
             if np.random.random() < 1 - ep:#epsilon greedy exr vs expt
                 a = np.argmax(Q[sd[0], sd[1]])
@@ -67,10 +69,10 @@ def Viteration(env, lr, gamma, ep, mnep, e):
     return avgrlist
 
 #========================================== calling ==================================#
-lr=0.2
+lr=0.1
 gamma=0.9
 ep=0.8
-e=5000
+e=50
 mnep = 0
 avgrlist = Viteration(env, lr, gamma, ep, mnep, e)
 
@@ -79,6 +81,6 @@ plt.plot(100*(np.arange(len(avgrlist)) + 1), avgrlist)
 plt.xlabel('Episodes')
 plt.ylabel('Average Reward')
 plt.title('Average Reward vs Episodes')
-plt.savefig('rewards.jpg')
+plt.savefig('rewards/'+'epi_'+str(e)+'_lr_'+str()+'_gamma_'+str(gamma)+'.jpg')
 plt.show()
 plt.close()
