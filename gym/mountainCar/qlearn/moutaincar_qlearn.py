@@ -1,3 +1,25 @@
+'''
+    Here variable are abreviated as,
+    s - state
+    sd - discretised state
+    s_ - next state
+    s_d - discretised next state
+    ns - number of state
+    a - action
+    na - number of action
+    Q - Q table
+    rlist - list of reward
+    avgrlist -  - list average of reward
+    R - current reward
+    ep - epsilon(exploration probability)
+    mxep - max epsilon
+    mnep - min epsilon
+    epd - epsilon decay
+    gamma - discount_rate
+    lr - learning rate
+    ne - number of episode
+'''
+#============== Import necessary libraries=================#
 import numpy as np
 import gym
 import matplotlib.pyplot as plt
@@ -13,8 +35,8 @@ def discret(temp):
     tempd = np.round(tempd, 0).astype(int)
     return tempd
 
-#========================== value iteration ===========================#
-def Viteration(env, lr, gamma, ep, mnep, e):
+#========================== Qlearning ===========================#
+def Qlearning(env, lr, gamma, ep, mnep, e):
     #=====ns=======#        !!! .n wont work
     ns = (env.observation_space.high - env.observation_space.low) * np.array([10, 100])#10 horzontal and 100 verticle
     ns = np.round(ns, 0).astype(int) + 1
@@ -69,18 +91,18 @@ def Viteration(env, lr, gamma, ep, mnep, e):
     return avgrlist
 
 #========================================== calling ==================================#
-lr=0.15
-gamma=0.9
-ep=0.8
-e=5000
+lr=0.1
+gamma=0.8
+ep=0.7
+e=50000
 mnep = 0
-avgrlist = Viteration(env, lr, gamma, ep, mnep, e)
+avgrlist = Qlearning(env, lr, gamma, ep, mnep, e)
 
 #========================================== plot and save ==================================#
 plt.plot(100*(np.arange(len(avgrlist)) + 1), avgrlist)
 plt.xlabel('Episodes')
 plt.ylabel('Average Reward')
 plt.title('Average Reward vs Episodes')
-plt.savefig('rewards/qlearn/'+'epi_'+str(e)+'_lr_'+str(lr)+'_gamma_'+str(gamma)+'.jpg')
+plt.savefig('rewards/'+'epsd_'+str(e)+'_lr_'+str(lr)+'_epsln_'+str(ep)+'_gamma_'+str(gamma)+'.jpg')
 plt.show()
 plt.close()
