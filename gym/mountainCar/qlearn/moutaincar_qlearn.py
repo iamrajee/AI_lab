@@ -52,14 +52,17 @@ def Qlearning(env, lr, gamma, ep, mnep, e):
     #========== for e episodes ============#
     for i in range(e):
         done = False
-        rsum,R = 0,0
+        rsum = 0
         s = env.reset() #return (x,y)
         sd = discret(s)# Discretize
         #========== while not done ============#
+        if i == (e - 20):
+                print("\n*********** Press Enter run ******** \n")
+                input()
         while done != True:
-            if i >= (e - 5):# Render environment for last five e
+            if i >= (e - 20):# Render environment for last five e
                 env.render()
-                sleep(0.005)
+                sleep(0.01)
             #====== explore vs exploit =====#
             if np.random.random() < 1 - ep:#epsilon greedy exr vs expt
                 a = np.argmax(Q[sd[0], sd[1]])
@@ -92,8 +95,8 @@ def Qlearning(env, lr, gamma, ep, mnep, e):
 
 #========================================== calling ==================================#
 lr=0.1
-gamma=0.8
-ep=0.7
+gamma=0.9
+ep=0.8
 e=50000
 mnep = 0
 avgrlist = Qlearning(env, lr, gamma, ep, mnep, e)

@@ -61,6 +61,7 @@ def Sarsa(env, lr, gamma, ep, mnep, e):
                 print("\n*********** Press Enter run ******** \n")
                 input()
         while done != True:
+            
             if i >= (e - 20):# Render environment for last five e
                 env.render()
                 sleep(0.01)
@@ -84,10 +85,10 @@ def Sarsa(env, lr, gamma, ep, mnep, e):
                 # Q[sd[0], sd[1],a] =(1-lr)*Q[sd[0],sd[1],a]  +   lr*(R + gamma*np.max(Q[s_d[0], s_d[1]]))
                 Q[sd[0], sd[1],a] =(1-lr)*Q[sd[0],sd[1],a]  +   lr*(R + gamma*Q[s_d[0], s_d[1],a_])
             #====== variable update =====#
-            rsum += R# Update variables
+            rsum += R   # Update variables
             sd = s_d
         #====== epsilion decay =====#
-        if ep > mnep:# Decay ep
+        if ep > mnep: # Decay ep
             ep -= epd
         rlist.append(rsum)# Track rewards
         
@@ -101,13 +102,16 @@ def Sarsa(env, lr, gamma, ep, mnep, e):
     env.close()
     return avgrlist
 
+
+
 #========================================== calling ==================================#
 lr=0.1
 gamma=0.9
 ep=0.8
-e=50000
+e=30
 mnep = 0
 avgrlist = Sarsa(env, lr, gamma, ep, mnep, e)
+
 
 #========================================== plot and save ==================================#
 plt.plot(100*(np.arange(len(avgrlist)) + 1), avgrlist)

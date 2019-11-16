@@ -98,8 +98,8 @@ def Sarsa(env, lr, gamma, ep, mnep, e):
 
 #========================================== calling ==================================#
 lr=0.1
-gamma=0.8
-ep=0.7
+gamma=0.9
+ep=0.8
 e=50000
 mnep = 0
 avgrlist = Sarsa(env, lr, gamma, ep, mnep, e)
